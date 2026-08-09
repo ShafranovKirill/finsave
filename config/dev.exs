@@ -26,8 +26,7 @@ config :finsave, FinsaveWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "Fanir+5IivENHDqCPeTjaHQk7bnk0H/oV92VQ3/kqNNkNtrNBYj6keiiB7JEyp1S",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:finsave, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:finsave, ~w(--watch)]}
+    npm: ["run", "build:css", "--", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
