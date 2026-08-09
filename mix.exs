@@ -67,7 +67,8 @@ defmodule Finsave.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:argon2_elixir, "~> 4.0"},
-      {:flop, "~> 0.25.0"}
+      {:flop, "~> 0.25.0"},
+      {:cachex, "~> 4.1"}
     ]
   end
 
