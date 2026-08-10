@@ -8,6 +8,8 @@ defmodule FinsaveWeb.Router do
     plug :put_root_layout, html: {FinsaveWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_locale
+    plug FinsaveWeb.Plugs.FetchCurrentUser
   end
 
   pipeline :api do
@@ -43,5 +45,14 @@ defmodule FinsaveWeb.Router do
       live_dashboard "/dashboard", metrics: FinsaveWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  defp put_locale(conn, _opts) do
+    default_locale = Application.get_env(:finsave, :default_locale) || "en"
+
+    locale = get_session(conn, :locale) || default_locale
+
+    Gettext.put_locale(FinsaveWeb.Gettext, locale)
+    conn
   end
 end
