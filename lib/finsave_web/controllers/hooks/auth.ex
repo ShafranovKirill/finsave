@@ -1,4 +1,5 @@
 defmodule FinsaveWeb.Hooks.Auth do
+  import Phoenix.LiveView
   import Phoenix.Component
   alias Finsave.Identity
 
@@ -23,6 +24,14 @@ defmodule FinsaveWeb.Hooks.Auth do
           _ ->
             {:cont, assign(socket, :current_user, nil)}
         end
+    end
+  end
+
+  def on_mount(:require_authenticated_user, _params, _session, socket) do
+    if socket.assigns[:current_user] do
+      {:cont, socket}
+    else
+      {:halt, redirect(socket, to: "/auth/login")}
     end
   end
 end

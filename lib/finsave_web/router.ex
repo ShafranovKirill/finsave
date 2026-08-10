@@ -25,6 +25,25 @@ defmodule FinsaveWeb.Router do
     delete "/auth/log_out", SessionController, :delete
   end
 
+  live_session :public,
+    on_mount: [{FinsaveWeb.Hooks.Auth, :default}] do
+    scope "/auth", FinsaveWeb do
+      pipe_through :browser
+      live "/login", AuthLive.Login, :new
+    end
+  end
+
+  live_session :authenticated,
+    on_mount: [
+      {FinsaveWeb.Hooks.Auth, :default},
+      {FinsaveWeb.Hooks.Auth, :require_authenticated_user}
+    ] do
+    scope "/", FinsaveWeb do
+      pipe_through :browser
+      live "/dashboard", DashboardLive.Index, :index
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", FinsaveWeb do
   #   pipe_through :api
