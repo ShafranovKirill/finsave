@@ -1,6 +1,6 @@
-defmodule Finsave.Identify.Accounts do
+defmodule Finsave.Identity.Accounts do
   alias Ecto.Repo
-  alias Finsave.Identify.Account
+  alias Finsave.Identity.Account
   alias Finsave.{Repo}
 
   @spec get_account(String.t()) :: {:ok, Account.t()} | {:error, :not_found}

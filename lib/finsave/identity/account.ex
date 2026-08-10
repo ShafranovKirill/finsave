@@ -1,4 +1,4 @@
-defmodule Finsave.Identify.Account do
+defmodule Finsave.Identity.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
