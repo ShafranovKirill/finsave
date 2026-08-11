@@ -1,6 +1,7 @@
 defmodule Finsave.Identity.Account do
   use Ecto.Schema
   import Ecto.Changeset
+  use Gettext, backend: FinsaveWeb.Gettext
 
   @type t :: %__MODULE__{}
 
@@ -42,7 +43,10 @@ defmodule Finsave.Identity.Account do
     |> validate_format(:password, password_regex())
     |> validate_format(:email, email_regex())
     |> downcase_email()
-    |> unique_constraint(:email, name: :accounts__email__uk)
+    |> unique_constraint(:email,
+      name: :accounts__email__uk,
+      message: dgettext_noop("errors", "This email is already in use.")
+    )
     |> hash_password()
   end
 

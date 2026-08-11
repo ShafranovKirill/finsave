@@ -2,8 +2,8 @@ defmodule FinsaveWeb.SessionController do
   use FinsaveWeb, :controller
   alias Finsave.Identity
 
-  def create(conn, %{"user" => %{"login" => login, "password" => password}}) do
-    case Identity.authentificate(login, password) do
+  def create(conn, %{"user" => %{"email" => email, "password" => password}}) do
+    case Identity.authentificate(email, password) do
       {:ok, account} ->
         conn
         |> put_session(:account_id, account.id)
