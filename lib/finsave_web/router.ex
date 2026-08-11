@@ -41,14 +41,13 @@ defmodule FinsaveWeb.Router do
     ] do
     scope "/", FinsaveWeb do
       pipe_through :browser
-      # live "/dashboard", DashboardLive.Index, :index
+      live "/dashboard", DashboardLive.Index, :index
     end
   end
 
   scope "/", FinsaveWeb do
     pipe_through :browser
 
-    # Перехватывает любые URL, которые не совпали с маршрутами выше
     get "/*path", RedirectController, :to_login
   end
 

@@ -11,6 +11,9 @@ defmodule Finsave.Identity.Accounts do
 
       {:ok, %Account{} = account} ->
         {:ok, account}
+
+      _ ->
+        {:error, :not_found}
     end
   end
 

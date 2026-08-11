@@ -21,6 +21,6 @@ defmodule FinsaveWeb.SessionController do
     conn
     |> clear_session()
     |> put_flash(:info, gettext("Logged out successfully."))
-    |> redirect(to: "/")
+    |> redirect(to: "/auth/login")
   end
 end

@@ -124,7 +124,7 @@ defmodule FinsaveWeb.AuthLive.Register do
               placeholder="••••••••"
             />
             <button class="btn btn-primary w-full mt-4 phx-submit-loading:opacity-70">
-              {gettext("Log in")}
+              {gettext("Register")}
               <.icon name="hero-chevron-right" />
             </button>
             <div class="text-center mt-4">
