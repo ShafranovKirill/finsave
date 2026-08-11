@@ -68,7 +68,8 @@ defmodule Finsave.MixProject do
       {:bandit, "~> 1.5"},
       {:argon2_elixir, "~> 4.0"},
       {:flop, "~> 0.25.0"},
-      {:cachex, "~> 4.1"}
+      {:cachex, "~> 4.1"},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 

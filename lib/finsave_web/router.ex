@@ -19,6 +19,7 @@ defmodule FinsaveWeb.Router do
   scope "/", FinsaveWeb do
     pipe_through :browser
 
+    get "/", PageController, :home
     get "/locale/:locale", LocaleController, :set
     post "/auth/log_in", SessionController, :create
     delete "/auth/log_out", SessionController, :delete
