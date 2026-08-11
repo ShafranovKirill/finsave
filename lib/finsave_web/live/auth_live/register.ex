@@ -13,12 +13,15 @@ defmodule FinsaveWeb.AuthLive.Register do
     embedded_schema do
       field :email, :string
       field :password, :string
+      field :password_confirmation, :string
     end
 
     def changeset(data \\ %__MODULE__{}, attrs) do
       data
-      |> cast(attrs, [:email, :password])
-      |> validate_required([:email, :password], message: dgettext_noop("errors", "is required"))
+      |> cast(attrs, [:email, :password, :password_confirmation])
+      |> validate_required([:email, :password, :password_confirmation],
+        message: dgettext_noop("errors", "is required")
+      )
       |> validate_format(:email, Identity.email_regex(),
         message: dgettext_noop("errors", "should be a email")
       )
@@ -28,6 +31,9 @@ defmodule FinsaveWeb.AuthLive.Register do
             "errors",
             "must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
           )
+      )
+      |> validate_confirmation(:password,
+        message: dgettext_noop("errors", "does not match password")
       )
     end
   end
@@ -85,8 +91,12 @@ defmodule FinsaveWeb.AuthLive.Register do
       <div class="card w-full max-w-md">
         <div class="card-body gap-4 p-6">
           <div class="text-center">
-            <div class="inline-flex items-center justify-center w-18 h-18 ">
-              <.icon name="hero-user" class="size-7 text-primary" />
+            <div class="inline-flex items-center justify-center ">
+              <img
+                src={~p"/images/finsave-logo.png"}
+                alt="FinSave Logo"
+                class="w-30 h-30 object-contain"
+              />
             </div>
             <h2 class="text-2xl font-display font-bold uppercase">
               {gettext("Register in FinSave")}
@@ -122,6 +132,14 @@ defmodule FinsaveWeb.AuthLive.Register do
               type="password"
               label={gettext("Password")}
               placeholder="••••••••"
+              required
+            />
+            <.input
+              field={@form[:password_confirmation]}
+              type="password"
+              label={gettext("Confirm password")}
+              placeholder="••••••••"
+              required
             />
             <button class="btn btn-primary w-full mt-4 phx-submit-loading:opacity-70">
               {gettext("Register")}

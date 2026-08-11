@@ -87,8 +87,12 @@ defmodule FinsaveWeb.AuthLive.Login do
       <div class="card w-full max-w-md">
         <div class="card-body gap-4 p-6">
           <div class="text-center">
-            <div class="inline-flex items-center justify-center w-18 h-18 ">
-              <.icon name="hero-user" class="size-7 text-primary" />
+            <div class="inline-flex items-center justify-center ">
+              <img
+                src={~p"/images/finsave-logo.png"}
+                alt="FinSave Logo"
+                class="w-30 h-30 object-contain"
+              />
             </div>
             <h2 class="text-2xl font-display font-bold uppercase">{gettext("Welcome to FinSave")}</h2>
             <p class="text-base-content/60 text-sm">
