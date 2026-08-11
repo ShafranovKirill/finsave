@@ -110,3 +110,31 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+#: lib/finsave/identity/account.ex:48
+#, elixir-autogen, elixir-format
+msgid "This email is already in use."
+msgstr ""
+
+#: lib/finsave_web/live/auth_live/register.ex:36
+#, elixir-autogen, elixir-format
+msgid "does not match password"
+msgstr ""
+
+#: lib/finsave_web/live/auth_live/login.ex:21
+#: lib/finsave_web/live/auth_live/register.ex:23
+#, elixir-autogen, elixir-format
+msgid "is required"
+msgstr ""
+
+#: lib/finsave_web/live/auth_live/login.ex:27
+#: lib/finsave_web/live/auth_live/register.ex:30
+#, elixir-autogen, elixir-format
+msgid "must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+msgstr ""
+
+#: lib/finsave_web/live/auth_live/login.ex:23
+#: lib/finsave_web/live/auth_live/register.ex:26
+#, elixir-autogen, elixir-format
+msgid "should be a email"
+msgstr ""

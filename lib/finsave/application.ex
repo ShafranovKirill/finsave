@@ -15,6 +15,7 @@ defmodule Finsave.Application do
       # Start a worker by calling: Finsave.Worker.start_link(arg)
       # {Finsave.Worker, arg},
       # Start to serve requests, typically the last entry
+      {Cachex, name: :account_cache},
       FinsaveWeb.Endpoint
     ]
 

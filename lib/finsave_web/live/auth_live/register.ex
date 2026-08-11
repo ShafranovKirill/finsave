@@ -1,0 +1,182 @@
+defmodule FinsaveWeb.AuthLive.Register do
+  use FinsaveWeb, :live_view
+  alias Finsave.Identity
+
+  defmodule RegisterForm do
+    use Ecto.Schema
+    import Ecto.Changeset
+    use Gettext, backend: FinsaveWeb.Gettext
+
+    @type t :: %__MODULE__{}
+
+    @primary_key false
+    embedded_schema do
+      field :email, :string
+      field :password, :string
+      field :password_confirmation, :string
+    end
+
+    def changeset(data \\ %__MODULE__{}, attrs) do
+      data
+      |> cast(attrs, [:email, :password, :password_confirmation])
+      |> validate_required([:email, :password, :password_confirmation],
+        message: dgettext_noop("errors", "is required")
+      )
+      |> validate_format(:email, Identity.email_regex(),
+        message: dgettext_noop("errors", "should be a email")
+      )
+      |> validate_format(:password, Identity.password_regex(),
+        message:
+          dgettext_noop(
+            "errors",
+            "must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+          )
+      )
+      |> validate_confirmation(:password,
+        message: dgettext_noop("errors", "does not match password")
+      )
+    end
+  end
+
+  def mount(_params, _session, socket) do
+    if socket.assigns[:current_user] do
+      {:ok, redirect(socket, to: "/dashboard")}
+    else
+      changeset = RegisterForm.changeset(%{})
+
+      {:ok,
+       assign(socket,
+         form: to_form(changeset, as: "user"),
+         error_message: nil,
+         trigger_action: false
+       )}
+    end
+  end
+
+  def handle_event("validate", %{"user" => params}, socket) do
+    changeset =
+      %RegisterForm{}
+      |> RegisterForm.changeset(params)
+      |> Map.put(:action, :validate)
+
+    {:noreply, assign(socket, form: to_form(changeset, as: "user"), error_message: nil)}
+  end
+
+  def handle_event("submit", %{"user" => params}, socket) do
+    changeset =
+      %RegisterForm{}
+      |> RegisterForm.changeset(params)
+      |> Map.put(:action, :insert)
+
+    if changeset.valid? do
+      case Identity.create_account(params) do
+        {:ok, _account} ->
+          {:noreply, assign(socket, trigger_action: true)}
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          {:noreply,
+           assign(socket,
+             form: to_form(changeset, as: "user"),
+             error_message: nil
+           )}
+      end
+    else
+      {:noreply, assign(socket, form: to_form(changeset, as: "user"))}
+    end
+  end
+
+  def render(assigns) do
+    ~H"""
+    <div class="min-h-screen flex-1 flex flex-col items-center justify-center p-4">
+      <div class="card w-full max-w-md">
+        <div class="card-body gap-4 p-6">
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center ">
+              <img
+                src={~p"/images/finsave-logo.png"}
+                alt="FinSave Logo"
+                class="w-30 h-30 object-contain"
+              />
+            </div>
+            <h2 class="text-2xl font-display font-bold uppercase">
+              {gettext("Register in FinSave")}
+            </h2>
+            <p class="text-base-content/60 text-sm">
+              {gettext("Sign up to continue")}
+            </p>
+          </div>
+
+          <%= if @error_message do %>
+            <div role="alert" class="alert alert-error ">
+              <.icon name="hero-exclamation-triangle" class="size-5 shrink-0" />
+              <span>{@error_message}</span>
+            </div>
+          <% end %>
+          <.form
+            id="user"
+            for={@form}
+            action={~p"/auth/log_in"}
+            phx-change="validate"
+            phx-submit="submit"
+            phx-trigger-action={assigns[:trigger_action]}
+            class="flex flex-col gap-2"
+          >
+            <.input
+              field={@form[:email]}
+              type="text"
+              label={gettext("Email")}
+              placeholder={gettext("Enter your email")}
+            />
+            <.input
+              field={@form[:password]}
+              type="password"
+              label={gettext("Password")}
+              placeholder="••••••••"
+              required
+            />
+            <.input
+              field={@form[:password_confirmation]}
+              type="password"
+              label={gettext("Confirm password")}
+              placeholder="••••••••"
+              required
+            />
+            <button class="btn btn-primary w-full mt-4 phx-submit-loading:opacity-70">
+              {gettext("Register")}
+              <.icon name="hero-chevron-right" />
+            </button>
+            <div class="text-center mt-4">
+              <span class="text-sm text-base-content/60">{gettext("Already have an account?")}</span>
+              <.link
+                navigate={~p"/auth/login"}
+                class="text-sm font-semibold text-primary hover:text-primary/80 hover:underline transition-colors ml-1"
+              >
+                {gettext("Sign in")}
+              </.link>
+            </div>
+          </.form>
+        </div>
+      </div>
+      <div class="fixed top-4 right-4 z-50">
+        <.link
+          :if={Gettext.get_locale(FinsaveWeb.Gettext) == "ru"}
+          href={~p"/locale/en"}
+          class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+        >
+          <span>🇬🇧</span>
+          <span>EN</span>
+        </.link>
+
+        <.link
+          :if={Gettext.get_locale(FinsaveWeb.Gettext) == "en"}
+          href={~p"/locale/ru"}
+          class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+        >
+          <span>🇷🇺</span>
+          <span>RU</span>
+        </.link>
+      </div>
+    </div>
+    """
+  end
+end

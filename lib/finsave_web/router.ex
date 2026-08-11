@@ -8,6 +8,8 @@ defmodule FinsaveWeb.Router do
     plug :put_root_layout, html: {FinsaveWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug FinsaveWeb.Plugs.Locale
+    plug FinsaveWeb.Plugs.FetchCurrentUser
   end
 
   pipeline :api do
@@ -18,6 +20,29 @@ defmodule FinsaveWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/locale/:locale", LocaleController, :set
+    post "/auth/log_in", SessionController, :create
+    delete "/auth/log_out", SessionController, :delete
+  end
+
+  live_session :public,
+    on_mount: [{FinsaveWeb.Hooks.Auth, :default}] do
+    scope "/auth", FinsaveWeb do
+      pipe_through :browser
+      live "/login", AuthLive.Login, :new
+      live "/register", AuthLive.Register, :new
+    end
+  end
+
+  live_session :authenticated,
+    on_mount: [
+      {FinsaveWeb.Hooks.Auth, :default},
+      {FinsaveWeb.Hooks.Auth, :require_authenticated_user}
+    ] do
+    scope "/", FinsaveWeb do
+      pipe_through :browser
+      live "/dashboard", DashboardLive.Index, :index
+    end
   end
 
   # Other scopes may use custom stacks.
@@ -40,5 +65,11 @@ defmodule FinsaveWeb.Router do
       live_dashboard "/dashboard", metrics: FinsaveWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  scope "/", FinsaveWeb do
+    pipe_through :browser
+
+    get "/*path", RedirectController, :to_login
   end
 end

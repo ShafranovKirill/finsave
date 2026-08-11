@@ -1,0 +1,141 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100 != 11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10||n%100>=20) ? 1 : 2);\n"
+
+#: lib/finsave_web/components/core_components.ex:375
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr "Действия"
+
+#: lib/finsave_web/components/layouts.ex:102
+#: lib/finsave_web/components/layouts.ex:117
+#, elixir-autogen, elixir-format
+msgid "Attempting to reconnect"
+msgstr "Попытка повторного подключения"
+
+#: lib/finsave_web/controllers/session_controller.ex:15
+#, elixir-autogen, elixir-format
+msgid "Authetification failed."
+msgstr "Ошибка аутентификации."
+
+#: lib/finsave_web/controllers/session_controller.ex:23
+#, elixir-autogen, elixir-format
+msgid "Logged out successfully."
+msgstr "Вы успешно вышли из системы."
+
+#: lib/finsave_web/components/layouts.ex:109
+#, elixir-autogen, elixir-format
+msgid "Something went wrong!"
+msgstr "Что-то пошло не так!"
+
+#: lib/finsave_web/controllers/session_controller.ex:10
+#, elixir-autogen, elixir-format
+msgid "Successfuly logged in!"
+msgstr "Вход успешно выполнен!"
+
+#: lib/finsave_web/components/layouts.ex:94
+#, elixir-autogen, elixir-format
+msgid "We can't find the internet"
+msgstr "Не удается подключиться к интернету"
+
+#: lib/finsave_web/components/core_components.ex:81
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr "закрыть"
+
+#: lib/finsave_web/live/auth_live/register.ex:149
+#, elixir-autogen, elixir-format
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+#: lib/finsave_web/live/auth_live/register.ex:140
+#, elixir-autogen, elixir-format
+msgid "Confirm password"
+msgstr "Подтвердите пароль"
+
+#: lib/finsave_web/live/dashboard_live/index.ex:15
+#, elixir-autogen, elixir-format
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: lib/finsave_web/live/auth_live/login.ex:135
+#, elixir-autogen, elixir-format
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+#: lib/finsave_web/live/auth_live/login.ex:121
+#: lib/finsave_web/live/auth_live/register.ex:127
+#, elixir-autogen, elixir-format
+msgid "Email"
+msgstr "Электронная почта"
+
+#: lib/finsave_web/live/auth_live/login.ex:122
+#: lib/finsave_web/live/auth_live/register.ex:128
+#, elixir-autogen, elixir-format
+msgid "Enter your email"
+msgstr "Введите ваш email"
+
+#: lib/finsave_web/live/auth_live/login.ex:76
+#, elixir-autogen, elixir-format
+msgid "Invalid login or password"
+msgstr "Неверный логин или пароль"
+
+#: lib/finsave_web/live/auth_live/login.ex:131
+#, elixir-autogen, elixir-format
+msgid "Log in"
+msgstr "Войти"
+
+#: lib/finsave_web/live/dashboard_live/index.ex:18
+#, elixir-autogen, elixir-format
+msgid "Log out"
+msgstr "Выйти"
+
+#: lib/finsave_web/live/auth_live/login.ex:127
+#: lib/finsave_web/live/auth_live/register.ex:133
+#, elixir-autogen, elixir-format
+msgid "Password"
+msgstr "Пароль"
+
+#: lib/finsave_web/live/auth_live/register.ex:145
+#, elixir-autogen, elixir-format
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: lib/finsave_web/live/auth_live/register.ex:102
+#, elixir-autogen, elixir-format
+msgid "Register in FinSave"
+msgstr "Регистрация в FinSave"
+
+#: lib/finsave_web/live/auth_live/register.ex:154
+#, elixir-autogen, elixir-format
+msgid "Sign in"
+msgstr "Войти"
+
+#: lib/finsave_web/live/auth_live/login.ex:99
+#, elixir-autogen, elixir-format
+msgid "Sign in to your account to continue"
+msgstr "Войдите в свой аккаунт, чтобы продолжить"
+
+#: lib/finsave_web/live/auth_live/login.ex:140
+#, elixir-autogen, elixir-format
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: lib/finsave_web/live/auth_live/register.ex:105
+#, elixir-autogen, elixir-format
+msgid "Sign up to continue"
+msgstr "Зарегистрируйтесь, чтобы продолжить"
+
+#: lib/finsave_web/live/auth_live/login.ex:97
+#, elixir-autogen, elixir-format
+msgid "Welcome to FinSave"
+msgstr "Добро пожаловать в FinSave"

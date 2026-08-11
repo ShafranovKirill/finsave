@@ -65,7 +65,11 @@ defmodule Finsave.MixProject do
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:argon2_elixir, "~> 4.0"},
+      {:flop, "~> 0.25.0"},
+      {:cachex, "~> 4.1"},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 
