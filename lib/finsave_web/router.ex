@@ -30,6 +30,7 @@ defmodule FinsaveWeb.Router do
     scope "/auth", FinsaveWeb do
       pipe_through :browser
       live "/login", AuthLive.Login, :new
+      live "/register", AuthLive.Register, :new
     end
   end
 
@@ -40,8 +41,15 @@ defmodule FinsaveWeb.Router do
     ] do
     scope "/", FinsaveWeb do
       pipe_through :browser
-      live "/dashboard", DashboardLive.Index, :index
+      # live "/dashboard", DashboardLive.Index, :index
     end
+  end
+
+  scope "/", FinsaveWeb do
+    pipe_through :browser
+
+    # Перехватывает любые URL, которые не совпали с маршрутами выше
+    get "/*path", RedirectController, :to_login
   end
 
   # Other scopes may use custom stacks.
