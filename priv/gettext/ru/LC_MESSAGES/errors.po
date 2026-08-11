@@ -12,100 +12,128 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100 != 11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10||n%100>=20) ? 1 : 2);\n"
 
 msgid "can't be blank"
-msgstr ""
+msgstr "не может быть пустым"
 
 msgid "has already been taken"
-msgstr ""
+msgstr "уже занято"
 
 msgid "is invalid"
-msgstr ""
+msgstr "имеет неверное значение"
 
 msgid "must be accepted"
-msgstr ""
+msgstr "должно быть принято"
 
 msgid "has invalid format"
-msgstr ""
+msgstr "имеет неверный формат"
 
 msgid "has an invalid entry"
-msgstr ""
+msgstr "содержит неверную запись"
 
 msgid "is reserved"
-msgstr ""
+msgstr "зарезервировано"
 
 msgid "does not match confirmation"
-msgstr ""
+msgstr "не совпадает с подтверждением"
 
 msgid "is still associated with this entry"
-msgstr ""
+msgstr "всё ещё связано с этой записью"
 
 msgid "are still associated with this entry"
-msgstr ""
+msgstr "всё ещё связаны с этой записью"
 
 msgid "should have %{count} item(s)"
 msgid_plural "should have %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должен содержать %{count} элемент"
+msgstr[1] "должен содержать %{count} элемента"
+msgstr[2] "должен содержать %{count} элементов"
 
 msgid "should be %{count} character(s)"
 msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должно содержать %{count} символ"
+msgstr[1] "должно содержать %{count} символа"
+msgstr[2] "должно содержать %{count} символов"
 
 msgid "should be %{count} byte(s)"
 msgid_plural "should be %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "размер должен быть %{count} байт"
+msgstr[1] "размер должен быть %{count} байта"
+msgstr[2] "размер должен быть %{count} байт"
 
 msgid "should have at least %{count} item(s)"
 msgid_plural "should have at least %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должен содержать как минимум %{count} элемент"
+msgstr[1] "должен содержать как минимум %{count} элемента"
+msgstr[2] "должен содержать как минимум %{count} элементов"
 
 msgid "should be at least %{count} character(s)"
 msgid_plural "should be at least %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должно быть не менее %{count} символа"
+msgstr[1] "должно быть не менее %{count} символов"
+msgstr[2] "должно быть не менее %{count} символов"
 
 msgid "should be at least %{count} byte(s)"
 msgid_plural "should be at least %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "размер должен быть не менее %{count} байта"
+msgstr[1] "размер должен быть не менее %{count} байт"
+msgstr[2] "размер должен быть не менее %{count} байт"
 
 msgid "should have at most %{count} item(s)"
 msgid_plural "should have at most %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должен содержать не более %{count} элемента"
+msgstr[1] "должен содержать не более %{count} элементов"
+msgstr[2] "должен содержать не более %{count} элементов"
 
 msgid "should be at most %{count} character(s)"
 msgid_plural "should be at most %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "должно быть не более %{count} символа"
+msgstr[1] "должно быть не более %{count} символов"
+msgstr[2] "должно быть не более %{count} символов"
 
 msgid "should be at most %{count} byte(s)"
 msgid_plural "should be at most %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "размер должен быть не более %{count} байта"
+msgstr[1] "размер должен быть не более %{count} байт"
+msgstr[2] "размер должен быть не более %{count} байт"
 
 msgid "must be less than %{number}"
-msgstr ""
+msgstr "должно быть меньше, чем %{number}"
 
 msgid "must be greater than %{number}"
-msgstr ""
+msgstr "должно быть больше, чем %{number}"
 
 msgid "must be less than or equal to %{number}"
-msgstr ""
+msgstr "должно быть меньше или равно %{number}"
 
 msgid "must be greater than or equal to %{number}"
-msgstr ""
+msgstr "должно быть больше или равно %{number}"
 
 msgid "must be equal to %{number}"
-msgstr ""
+msgstr "должно быть равно %{number}"
+
+#: lib/finsave/identity/account.ex:48
+#, elixir-autogen, elixir-format
+msgid "This email is already in use."
+msgstr "Этот email уже используется."
+
+#: lib/finsave_web/live/auth_live/register.ex:36
+#, elixir-autogen, elixir-format
+msgid "does not match password"
+msgstr "не совпадает с паролем"
+
+#: lib/finsave_web/live/auth_live/login.ex:21
+#: lib/finsave_web/live/auth_live/register.ex:23
+#, elixir-autogen, elixir-format
+msgid "is required"
+msgstr "обязательное поле"
+
+#: lib/finsave_web/live/auth_live/login.ex:27
+#: lib/finsave_web/live/auth_live/register.ex:30
+#, elixir-autogen, elixir-format
+msgid "must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+msgstr "должен содержать не менее 8 символов, включая хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ"
+
+#: lib/finsave_web/live/auth_live/login.ex:23
+#: lib/finsave_web/live/auth_live/register.ex:26
+#, elixir-autogen, elixir-format
+msgid "should be a email"
+msgstr "должен быть корректным email"

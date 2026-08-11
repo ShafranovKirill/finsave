@@ -144,6 +144,25 @@ defmodule FinsaveWeb.AuthLive.Login do
         </div>
       </div>
     </div>
+    <div class="fixed top-4 right-4 z-50">
+      <.link
+        :if={Gettext.get_locale(FinsaveWeb.Gettext) == "ru"}
+        href={~p"/locale/en"}
+        class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+      >
+        <span>🇬🇧</span>
+        <span>EN</span>
+      </.link>
+
+      <.link
+        :if={Gettext.get_locale(FinsaveWeb.Gettext) == "en"}
+        href={~p"/locale/ru"}
+        class="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-colors"
+      >
+        <span>🇷🇺</span>
+        <span>RU</span>
+      </.link>
+    </div>
     """
   end
 end
