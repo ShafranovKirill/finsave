@@ -8,7 +8,7 @@ defmodule FinsaveWeb.Router do
     plug :put_root_layout, html: {FinsaveWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :put_locale
+    plug FinsaveWeb.Plugs.Locale
     plug FinsaveWeb.Plugs.FetchCurrentUser
   end
 
@@ -44,12 +44,6 @@ defmodule FinsaveWeb.Router do
     end
   end
 
-  scope "/", FinsaveWeb do
-    pipe_through :browser
-
-    get "/*path", RedirectController, :to_login
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", FinsaveWeb do
   #   pipe_through :api
@@ -72,12 +66,9 @@ defmodule FinsaveWeb.Router do
     end
   end
 
-  defp put_locale(conn, _opts) do
-    default_locale = Application.get_env(:finsave, :default_locale) || "en"
+  scope "/", FinsaveWeb do
+    pipe_through :browser
 
-    locale = get_session(conn, :locale) || default_locale
-
-    Gettext.put_locale(FinsaveWeb.Gettext, locale)
-    conn
+    get "/*path", RedirectController, :to_login
   end
 end

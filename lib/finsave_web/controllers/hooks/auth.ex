@@ -4,10 +4,9 @@ defmodule FinsaveWeb.Hooks.Auth do
   alias Finsave.Identity
 
   def on_mount(:default, _params, session, socket) do
-    default_locale = Application.get_env(:finsave, :default_locale) || "en"
+    locale = FinsaveWeb.Plugs.Locale.restore_from_session(session)
 
-    locale = session["locale"] || default_locale
-    Gettext.put_locale(FinsaveWeb.Gettext, locale)
+    socket = assign(socket, :locale, locale)
 
     case session["account_id"] do
       nil ->

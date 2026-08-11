@@ -1,10 +1,14 @@
 defmodule FinsaveWeb.LocaleController do
   use FinsaveWeb, :controller
 
-  def set(conn, %{"locale" => locale}) when locale in ["ru", "en"] do
-    conn
-    |> put_session(:locale, locale)
-    |> redirect(to: return_path(conn))
+  def set(conn, %{"locale" => locale}) do
+    if locale in FinsaveWeb.Plugs.Locale.supported_locales() do
+      conn
+      |> put_session(:locale, locale)
+      |> redirect(to: return_path(conn))
+    else
+      redirect(conn, to: return_path(conn))
+    end
   end
 
   defp return_path(conn) do
